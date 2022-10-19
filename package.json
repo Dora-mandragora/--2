@@ -1,0 +1,19 @@
+{
+  "name": "l2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dora-mandragora/--2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dora-mandragora/--2/issues"
+  },
+  "homepage": "https://github.com/Dora-mandragora/--2#readme"
+}

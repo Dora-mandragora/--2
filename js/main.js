@@ -13,6 +13,7 @@ window.onload = () => {
     const rectButton = document.getElementById('rect');
     const circleButton = document.getElementById('circle'); 
     const clearButton = document.getElementById('clear');
+    const emptyButton = document.getElementById('empty');
 
     svgCanvas = createCanvas();
     
@@ -40,10 +41,14 @@ circleButton.addEventListener('click', ()=>{
 
 clearButton.addEventListener('click', () =>{
     canvas.removeChild(svgCanvas);
-    createCanvas(svgCanvas);
-    
+    createCanvas(svgCanvas);    
 
     svgCanvas = document.getElementById('svg');
+});
+
+emptyButton.addEventListener('click', () =>{
+    isRect = false;
+    isCircle = false;
 })
 
 function createRectEvents(e)
@@ -55,9 +60,11 @@ function createRectEvents(e)
     rect.setAttributeNS(null, 'height', '1');
     rect.setAttributeNS(null, 'x', (e.offsetX).toString());
     rect.setAttributeNS(null, 'y', (e.offsetY).toString());
-    rect.setAttributeNS(null, 'fill', 'white');
-    rect.setAttributeNS(null, 'stroke', 'black');
-
+    rect.setAttributeNS(null, 'fill', '#FFFFFF');
+    rect.setAttributeNS(null, 'stroke', '#000000');
+    rect.setAttributeNS(null, 'stroke-width', 1);
+    
+    
     let shiftX = e.offsetX;
     let shiftY = e.offsetY;
     let origLoc = {X: e.offsetX, Y: e.offsetY};
@@ -65,7 +72,7 @@ function createRectEvents(e)
     document.addEventListener('mousemove', onMouseMoveRect, false);
     svgCanvas.addEventListener('mouseup',onMouseUpRect);
     svgCanvas.appendChild(rect);
-
+    
     function onMouseMoveRect(event) {
         var status = rect.getAttributeNS(null, 'class');
         if(isMouseDown && status == null) moveAtRect(event.offsetX, event.offsetY);           
@@ -89,8 +96,10 @@ function createRectEvents(e)
     function onMouseUpRect(){
         isMouseDown = false;   
         rect.setAttributeNS(null, 'class', 'completed');  
+        rect.addEventListener('click', getPropertiesWindow);
     }
-};
+    
+    };
 
 function createCircleEvents(e)
 {
