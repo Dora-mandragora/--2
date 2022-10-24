@@ -33,6 +33,7 @@ function createCanvas(svgCanvas){
     return svgCanvas;
 }
 
+//----------BUTTONS-------------------------------------
 rectButton.addEventListener('click', ()=>{
     isRect = true;
     isCircle = false;
@@ -67,6 +68,7 @@ moveButton.addEventListener('click', () =>{
     isMove = true;
     isSelect = false;
 })
+//----------BUTTONS-----------------------------------------
 
 function createRectEvents(e)
 {
@@ -110,6 +112,7 @@ function createRectEvents(e)
         rect.setAttributeNS(null, 'width', width.toString());
         rect.setAttributeNS(null, 'height', height.toString());
     }
+
     function onMouseUpRect(){
         isMouseDown = false;   
         rect.setAttributeNS(null, 'class', 'completed');
@@ -130,8 +133,10 @@ function createCircleEvents(e)
     circle.setAttributeNS(null, 'r', '1');
     circle.setAttributeNS(null, 'cx', (e.offsetX).toString());
     circle.setAttributeNS(null, 'cy', (e.offsetY).toString());
-    circle.setAttributeNS(null, 'fill', 'white');
-    circle.setAttributeNS(null, 'stroke', 'black');
+    circle.setAttributeNS(null, 'fill', '#ffffff');
+    circle.setAttributeNS(null, 'stroke', '#000000');
+    circle.setAttributeNS(null, 'stroke-width', 1);
+
 
     let shiftX = e.offsetX;
     let shiftY = e.offsetY;
@@ -150,9 +155,14 @@ function createCircleEvents(e)
         (offsetY-shiftY)**2); 
         circle.setAttributeNS(null, 'r', radius.toString());
     }
+
     function onMouseUpCircle(){
         isMouseDown = false;   
-        circle.setAttributeNS(null, 'class', 'completed');  
+        circle.setAttributeNS(null, 'class', 'completed');
+        if(isSelect)  
+            circle.addEventListener('click', getPropertiesWindow);
+            else circle.removeEventListener('click', getPropertiesWindow);
+  
     }
 }
 }

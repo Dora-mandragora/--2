@@ -33,9 +33,10 @@ function showProperties(edObj){
     figureDiv.className = 'figure';
     figureDiv.insertAdjacentElement('beforeend',svgProps);
 
-
+       
     let copyFigure = edObj.cloneNode();    
     copyFigure.id = 'copy-figure';
+    //rect
     copyFigure.setAttributeNS(null, 'x', 100);
     copyFigure.setAttributeNS(null, 'y', 50);
     let height = copyFigure.getAttributeNS(null, 'height');
@@ -46,9 +47,16 @@ function showProperties(edObj){
     while (width>100) width /= 1.2, height /= 1.2;
     copyFigure.setAttributeNS(null,'height',height);
     copyFigure.setAttributeNS(null,'width',width);
+    //circle
+    copyFigure.setAttributeNS(null, 'cx', 150);
+    copyFigure.setAttributeNS(null, 'cy', 75);
+    let radius = copyFigure.getAttributeNS(null, 'r');
+    while(radius>50) radius*=0.9;
+    copyFigure.setAttributeNS(null,'r', radius);
+
     svgProps.insertAdjacentElement('beforeend',copyFigure);
     propDiv.insertAdjacentElement('beforeend',figureDiv);
-
+    
 
     let propTextDiv = document.createElement('div');
     propTextDiv.className = 'properties-more';
