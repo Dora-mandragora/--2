@@ -76,14 +76,19 @@ function showProperties(edObj){
 
 
 function getPropertiesWindow(e){
-    e.target.id = 'select';
+    lastObj = document.getElementById('select');    
+    if(lastObj != null)
+        lastObj.removeAttribute('id');
+
     let props = document.getElementsByClassName('properties')[0];
-    if(props != null)
-        props.remove();
+    if(props != null)        
+        props.remove();           
+    
+    e.target.id = 'select';
     showProperties(e.target);    
    
     let saveButton = document.getElementById('save-button');
-    saveButton.onclick = saveFigureProperties;
+    saveButton.addEventListener('click',saveFigureProperties);
 
     let copyFigure = document.getElementById('copy-figure');
     setEvents(copyFigure);
@@ -96,12 +101,11 @@ function saveFigureProperties(){
     let borderColor = document.getElementById('border').value;
     let border = document.getElementById('border-width').value;
     setProperties(edObj,color,borderColor,border);
-    edObj.id = null;
+    edObj.removeAttribute('id');
     let props = document.getElementsByClassName('properties')[0];
     props.remove();
 
 }
-
 
 
 function setEvents(edObj){
