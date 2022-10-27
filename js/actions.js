@@ -23,24 +23,30 @@ function dragObject(e){
         function onClickDragExit(){            
             document.removeEventListener('mouseup',onClickDragExit);
             document.removeEventListener('mousemove',onMouseMove);
-            document.removeEventListener('keyup', EscCancel); 
+            document.removeEventListener('keyup', cancelObject);
+            document.removeEventListener('keyup', deleteObject);  
+ 
         }
-        function EscCancel(e){   
+
+        function cancelObject(e){   
             if(e.key == "Escape"){
                 activeEl.setAttributeNS(null,'y', fpaxeY - shiftY); 
                 activeEl.setAttributeNS(null, 'x', fpaxeX - shiftX);
             onClickDragExit();
             }            
         }
-        document.addEventListener('keyup', EscCancel); 
+        function deleteObject(e){
+            if(e.key == "Delete"){
+                activeEl.remove();
+            onClickDragExit();
+            }
+        }
+
+        document.addEventListener('keyup', cancelObject);
+        document.addEventListener('keyup', deleteObject);  
         document.addEventListener('mousemove', onMouseMove);        
         document.addEventListener('mouseup', onClickDragExit);
 }
 
-function deleteObject(){
 
-}
 
-function cancelObject(){
-
-}

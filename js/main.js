@@ -123,14 +123,12 @@ function createRectEvents(e)
     function addRectEvents(){
         if(isSelect) {
                 rect.addEventListener('click', getPropertiesWindow);
-                rect.addEventListener('keyup', deleteObject);
-                rect.addEventListener('keyup', cancelObject);
+                
 
             }
             else {
                 rect.removeEventListener('click', getPropertiesWindow);
-                rect.removeEventListener('keyup', deleteObject);
-                rect.removeEventListener('keyup', cancelObject);
+                
             }
         if(isMove){
             rect.addEventListener('mousedown', dragObject);           
