@@ -75,12 +75,15 @@ function createRectEvents(e)
     if(!isRect) return;
     isMouseDown = true;
     let rect = document.createElementNS(ns, 'rect');
+    let borderColor = document.getElementById('border').value;
+    let fillColor = document.getElementById('fill').value;
+
     rect.setAttributeNS(null, 'width', '1');
     rect.setAttributeNS(null, 'height', '1');
     rect.setAttributeNS(null, 'x', (e.offsetX).toString());
     rect.setAttributeNS(null, 'y', (e.offsetY).toString());
-    rect.setAttributeNS(null, 'fill', '#FFFFFF');
-    rect.setAttributeNS(null, 'stroke', '#000000');
+    rect.setAttributeNS(null, 'fill', fillColor);
+    rect.setAttributeNS(null, 'stroke', borderColor);
     rect.setAttributeNS(null, 'stroke-width', 1);
     
     
@@ -147,11 +150,14 @@ function createCircleEvents(e)
     if(!isCircle) return;
     isMouseDown = true;
     let circle = document.createElementNS(ns,'circle');
+    let borderColor = document.getElementById('border').value;
+    let fillColor = document.getElementById('fill').value;
+
     circle.setAttributeNS(null, 'r', '1');
     circle.setAttributeNS(null, 'cx', (e.offsetX).toString());
     circle.setAttributeNS(null, 'cy', (e.offsetY).toString());
-    circle.setAttributeNS(null, 'fill', '#ffffff');
-    circle.setAttributeNS(null, 'stroke', '#000000');
+    circle.setAttributeNS(null, 'fill', fillColor);
+    circle.setAttributeNS(null, 'stroke', borderColor);
     circle.setAttributeNS(null, 'stroke-width', 1);
 
 

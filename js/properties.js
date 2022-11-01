@@ -61,8 +61,8 @@ function showProperties(edObj){
     let propTextDiv = document.createElement('div');
     propTextDiv.className = 'properties-more';
     propTextDiv.innerHTML = 
-    `<div class = property> <label for = color>Color: </label> <input type="color" id = 'fill' value = ${props.color}> </div>` 
-    +`<div class = property><label for = border>Border: </label><input type="color" id = 'border' value = ${props.borderColor}> </div>` 
+    `<div class = property> <label for = color>Color: </label> <input type="color" id = 'props_fill' value = ${props.color}> </div>` 
+    +`<div class = property><label for = border>Border: </label><input type="color" id = 'props_border' value = ${props.borderColor}> </div>` 
     +`<div class = property><label for = border-width>Border width: </label>0<input type=range id = 'border-width' value = ${props.border} min = 0 max = 20>20 </div>`;
     propDiv.insertAdjacentElement('beforeend',propTextDiv);
 
@@ -97,8 +97,8 @@ function getPropertiesWindow(e){
 
 function saveFigureProperties(){
     let edObj = document.getElementById('select');
-    let color = document.getElementById('fill').value;
-    let borderColor = document.getElementById('border').value;
+    let color = document.getElementById('props_fill').value;
+    let borderColor = document.getElementById('props_border').value;
     let border = document.getElementById('border-width').value;
     setProperties(edObj,color,borderColor,border);
     edObj.removeAttribute('id');
@@ -110,9 +110,9 @@ function saveFigureProperties(){
 
 function setEvents(edObj){
 
-    let colorInput = document.getElementById('fill');
+    let colorInput = document.getElementById('props_fill');
     colorInput.addEventListener('change', changeColor); 
-    let borderColorInput = document.getElementById('border');
+    let borderColorInput = document.getElementById('props_border');
     borderColorInput.addEventListener('change', changeBorderColor); 
     let borderInput = document.getElementById('border-width');
     borderInput.addEventListener('change', changeBorder); 
