@@ -29,7 +29,7 @@ function createCanvas(svgCanvas){
 
     svgCanvas.addEventListener('mousedown', createRectEvents);    
     svgCanvas.addEventListener('mousedown', createCircleEvents);
-
+    
     return svgCanvas;
 }
 
@@ -91,7 +91,7 @@ function createRectEvents(e)
     let shiftY = e.offsetY;
     let origLoc = {X: e.offsetX, Y: e.offsetY};
     
-    svgCanvas.addEventListener('mousedown', addRectEvents);
+    svgCanvas.addEventListener('mousedown', addSelectionRectEvents);
     svgCanvas.addEventListener('mousemove', onMouseMoveRect);
     svgCanvas.addEventListener('mouseup',onMouseUpRect);
     svgCanvas.appendChild(rect);
@@ -120,15 +120,14 @@ function createRectEvents(e)
     function onMouseUpRect(){
         isMouseDown = false;   
         rect.setAttributeNS(null, 'class', 'completed');
-        svgCanvas.removeEventListener('mousemove', onMouseMoveRect);
+        svgCanvas.removeEventListener('mousemove', onMouseMoveRect);        
+        svgCanvas.removeEventListener('mouseup',onMouseUpRect);
     };
 
-    function addRectEvents(){
+    function addSelectionRectEvents(){
         if(isSelect) {
                 rect.addEventListener('click', getPropertiesWindow);
-                
-
-            }
+                }
             else {
                 rect.removeEventListener('click', getPropertiesWindow);
                 
@@ -164,7 +163,8 @@ function createCircleEvents(e)
     let shiftX = e.offsetX;
     let shiftY = e.offsetY;
 
-    document.addEventListener('mousemove', onMouseMoveCircle, false);
+    svgCanvas.addEventListener('mousedown', addSelectionCircleEvents);
+    svgCanvas.addEventListener('mousemove', onMouseMoveCircle, false);
     svgCanvas.addEventListener('mouseup',onMouseUpCircle);
 
     svgCanvas.appendChild(circle);
@@ -182,10 +182,26 @@ function createCircleEvents(e)
     function onMouseUpCircle(){
         isMouseDown = false;   
         circle.setAttributeNS(null, 'class', 'completed');
-        if(isSelect)  
+        svgCanvas.removeEventListener('mousemove', onMouseMoveCircle, false);
+        svgCanvas.removeEventListener('mouseup',onMouseUpCircle);
+    }
+
+    function addSelectionCircleEvents(){
+        if(isSelect) {
             circle.addEventListener('click', getPropertiesWindow);
-            else circle.removeEventListener('click', getPropertiesWindow);
-  
+                }
+            else {
+                circle.removeEventListener('click', getPropertiesWindow);
+                
+            }
+        if(isMove){
+            circle.addEventListener('mousedown', dragObject);           
+        }
+            else {
+                circle.removeEventListener('mousedown', dragObject);
+            }
+
+
     }
 }
 }

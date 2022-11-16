@@ -97,6 +97,7 @@ function getPropertiesWindow(e){
 
 function saveFigureProperties(){
     let edObj = document.getElementById('select');
+    if(edObj == null) return;
     let color = document.getElementById('props_fill').value;
     let borderColor = document.getElementById('props_border').value;
     let border = document.getElementById('border-width').value;
